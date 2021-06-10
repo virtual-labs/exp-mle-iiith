@@ -16,7 +16,7 @@ In practice it is often more convenient to work with the logarithm of the likeli
 
 The method of maximum likelihood estimates θ0 by finding a value of θ that maximizes <img src="images/lhat.png"">. This method of estimation is a maximum likelihood estimator (MLE) of θ0:
 
-<img src="images/mletheta.png"">
+<img src="images/mletheta.png">
 
 A MLE estimate is the same regardless of whether we maximize the likelihood or the log-likelihood function, since log is a monotone transformation. For many models, a maximum likelihood estimator can be found as an explicit function of the observed data x<sub>1</sub>,..., x<sub>n</sub>. For many other models, however, no closed-form solution to the maximization problem is known or available, and a MLE has to be found numerically using optimization methods. For some problems, there may be multiple estimates that maximize the likelihood. For other problems, no maximum likelihood estimate exists (meaning that the log-likelihood function increases without attaining the supremum value).
 
