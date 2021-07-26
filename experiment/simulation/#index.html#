@@ -9,7 +9,7 @@
 
 	<p>Click <a href="Exp6.tar.gz">here</a> to open the Experiment for Linux systems</p>
 
-	<p>Click <a href="Exp6.zip">here</a> to open the Experiment for Windows</p>
+		<p>Click <a href="Exp6.zip">here</a> to open the Experiment for Windows</p>
 
 	<!-- Add JS at the bottom of HTML file --> 
         <script src="./js/main.js"></script>
