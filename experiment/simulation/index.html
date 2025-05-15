@@ -1,17 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
+  <meta charset="UTF-8">
+  <title>Generative Classifier Simulation</title>
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Import professional web fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-		<!-- Your code goes here-->
-	<p><li>This simulation has some <a href="../../../Introduction.html" target="PARENT">software dependencies</a>. We highly recommend you to use our customized <a href="https://vlead.vlabs.ac.in/development/#virtual-box" target="blank">VirtualBox</a> for the smooth running of these simulations.</li></p>
-	<p><li>Click <a href="Exp6.tar.gz">here</a> to open the Experiment for Linux systems</li></p>
+  <header>
+    <h1>Generative Classifier Simulation</h1>
+    <p>
+      Explore how different classes are modeled by density functions and see how maximum likelihood estimation is used to estimate parameters and define decision boundaries.
+    </p>
+  </header>
+  
+  <div class="container">
+    <section id="controls">
+      <div class="control-row">
+        <label for="distributionSelect">Select Distribution:</label>
+        <select id="distributionSelect">
+          <option value="gaussian_equal">Gaussian (2D) – Equal Covariance</option>
+          <option value="gaussian_diff">Gaussian (2D) – Different Covariance</option>
+          <option value="normal">Normal Distribution (1D)</option>
+          <option value="bernoulli">Bernoulli Distribution (1D)</option>
+          <option value="poisson">Poisson Distribution (1D)</option>
+        </select>
+        <button id="infoBtn" class="icon-btn" title="Learn about this distribution">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
+      <div class="control-row">
+        <label for="sampleSize">Sample Size Per Class:</label>
+        <input type="range" id="sampleSize" min="20" max="200" value="50">
+        <span id="sampleSizeValue">50</span>
+      </div>
+      <div class="control-row" id="paramControls">
+        <!-- Dynamic parameter controls will be added here -->
+      </div>
+      <div class="control-row">
+        <button id="generateDataBtn">Generate Data</button>
+        <button id="estimateMLEBtn">Estimate MLE</button>
+        <button id="markAllBtn">Show Classifier</button>
+        <button id="animateBtn" title="Animate data points"><i class="fas fa-play"></i></button>
+      </div>
 
-	<p><li>Click <a href="Exp6.zip">here</a> to open the Experiment for Windows</li></p>
+      <div class="metrics-panel" id="metrics">
+        <h3>Classifier Performance</h3>
+        <div id="performanceMetrics">Generate data and classify to see metrics</div>
+      </div>
+    </section>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <!--<script src="./js/main.js"></script>-->
+    <div class="main-content">
+      <section id="output">
+        <canvas id="simCanvas" width="600" height="400"></canvas>
+        <div id="results"></div>
+      </section>
+
+      <section id="explanationPanel" class="explanation-panel">
+        <h3>Understanding the Simulation</h3>
+        <div id="explanationContent">
+          Select a distribution type and generate data to begin learning about generative classification.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay">
+    <div id="infoModal" class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Distribution Information</h3>
+        <button id="closeModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="modalContent" class="modal-content"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Generative Classifier Simulation Tool | <a href="#" id="tutorialLink">View Tutorial</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

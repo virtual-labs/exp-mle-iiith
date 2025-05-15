@@ -1,1 +1,440 @@
-/* You CSS goes in here */
+/* Using Roboto and Lato for a modern, professional appearance */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Modern color palette suitable for data visualization */
+:root {
+  --primary: #3a86ff;
+  --primary-light: #4895ff;
+  --primary-dark: #2c6dc9;
+  --secondary: #ff6b6b;
+  --secondary-light: #ff8a8a;
+  --accent: #4cc9f0;
+  --accent-light: #72d6f5;
+  --success: #38b000;
+  --warning: #ffbe0b;
+  --neutral-light: #f0f2f5;
+  --neutral-medium: #dde1e6;
+  --neutral-dark: #8d99ae;
+  --text-dark: #212529;
+  --text-medium: #495057;
+  --text-light: #ffffff;
+  --class1-color: #ff6b6b;
+  --class2-color: #4cc9f0;
+  --decision-color: #38b000;
+  
+
+}
+
+/* Dark mode toggle */
+
+
+/* Container for the main content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+header p {
+  font-size: 1.1em;
+  margin: 15px auto 0 auto;
+  max-width: 800px;
+  line-height: 1.5;
+  color: var(--text-light);
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+#controls {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  max-width: 900px;
+  border: 1px solid var(--neutral-medium);
+  transition: background-color 0.3s;
+}
+
+
+.control-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.control-row label {
+  flex: 0 0 180px;
+  font-weight: 500;
+  color: var(--primary);
+  transition: color 0.3s;
+}
+
+
+
+.control-row select,
+.control-row input[type="range"],
+.control-row input[type="number"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid var(--neutral-medium);
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+
+
+.control-row select:focus,
+.control-row input[type="range"]:focus,
+.control-row input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
+}
+
+.control-row button {
+  background-color: var(--primary);
+  color: var(--text-light);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 1em;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.control-row button:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.control-row button:active {
+  transform: translateY(0);
+}
+
+#sampleSizeValue {
+  margin-left: 10px;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: var(--neutral-light);
+  padding: 3px 10px;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+
+
+#output {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#simCanvas {
+  border: 2px solid var(--primary);
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 15px;
+  transition: all 0.3s;
+}
+
+
+
+#results {
+  margin-top: 15px;
+  font-size: 1em;
+  text-align: left;
+  background-color: var(--neutral-light);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  color: var(--text-dark);
+  transition: all 0.3s;
+}
+
+/* Remove old toggle styles */
+
+
+/* Icon Button */
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 5px;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  color: var(--primary-dark);
+  transform: scale(1.2);
+}
+
+/* Explanation Panel */
+.explanation-panel {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+body.dark-mode .explanation-panel {
+  background-color: var(--dark-surface);
+}
+
+.explanation-panel h3 {
+  color: var(--primary);
+  margin-top: 0;
+  border-bottom: 1px solid var(--neutral-medium);
+  padding-bottom: 10px;
+  transition: color 0.3s;
+}
+
+
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.modal-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: scale(0.8);
+  transition: all 0.3s;
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--neutral-medium);
+  padding: 15px 20px;
+}
+
+
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--primary);
+}
+
+#closeModal {
+  background: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--text-medium);
+  transition: color 0.2s;
+}
+
+#closeModal:hover {
+  color: var(--secondary);
+}
+
+.modal-content {
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.modal-content p {
+  margin-bottom: 15px;
+}
+
+.modal-content h4 {
+  color: var(--primary);
+  margin: 20px 0 10px;
+}
+
+
+
+/* Metrics Panel */
+.metrics-panel {
+  background-color: var(--neutral-light);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  transition: all 0.3s;
+}
+
+
+
+.metrics-panel h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 1.1em;
+  border-bottom: 1px solid var(--neutral-medium);
+  padding-bottom: 10px;
+  transition: color 0.3s;
+}
+
+
+#performanceMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.metric-value {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+
+
+.metric-label {
+  font-size: 0.9em;
+  color: var(--text-medium);
+}
+
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: var(--neutral-light);
+  color: var(--text-medium);
+  border-top: 1px solid var(--neutral-medium);
+  transition: all 0.3s;
+}
+
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+
+
+/* Animation Button */
+#animateBtn {
+  background-color: var(--accent);
+}
+
+#animateBtn:hover {
+  background-color: var(--accent-light);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
+  
+  #output {
+    flex: 3;
+  }
+  
+  .explanation-panel {
+    flex: 2;
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .control-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .control-row label {
+    margin-bottom: 8px;
+  }
+  
+  #controls {
+    padding: 15px;
+  }
+  
+  .toggle-container {
+    margin-bottom: 10px;
+  }
+  
+  .control-row button {
+    margin-bottom: 10px;
+  }
+  
+
+}
