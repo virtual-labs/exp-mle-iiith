@@ -29,6 +29,9 @@ function init() {
     
   }
   
+  // Make canvas responsive
+  resizeCanvas();
+  
   // Set up event listeners
   setupEventListeners();
   
@@ -39,10 +42,46 @@ function init() {
   updateExplanationPanel();
 }
 
+// Make canvas responsive
+function resizeCanvas() {
+  const container = document.getElementById("output");
+  const containerWidth = container.clientWidth;
+  
+  // If on a mobile screen, adjust canvas dimensions
+  if (window.innerWidth <= 767) {
+    const aspectRatio = canvas.height / canvas.width;
+    const newWidth = Math.min(containerWidth - 20, 600); // Accounting for padding
+    const newHeight = newWidth * aspectRatio;
+    
+    canvas.style.width = newWidth + 'px';
+    canvas.style.height = newHeight + 'px';
+    
+    // Important: maintain the canvas's internal dimensions for correct rendering
+    // We don't change canvas.width and canvas.height to preserve the coordinate system
+  } else {
+    // Reset to original dimensions on larger screens
+    canvas.style.width = '';
+    canvas.style.height = '';
+  }
+  
+  // Force a redraw to ensure the canvas looks crisp
+  if (Object.keys(classData.class1).length > 0 || Object.keys(classData.class2).length > 0) {
+    drawCanvas();
+  }
+}
+
 // Set up all event listeners
 function setupEventListeners() {
   // Dark mode toggle
 
+  // Window resize event
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    // Redraw canvas content after resize
+    if (classData.class1.length > 0 || classData.class2.length > 0) {
+      drawCanvas();
+    }
+  });
   
   // Distribution select change
   distributionSelect.addEventListener("change", updateExplanationPanel);
@@ -79,17 +118,43 @@ function setupEventListeners() {
   // Animation button
   animateBtn.addEventListener("click", toggleAnimation);
   
-  // Canvas mouse move
-  canvas.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor(e.clientX - rect.left);
-    const y = Math.floor(e.clientY - rect.top);
-    // Clear a small area at the bottom to show coordinates
-    ctx.clearRect(0, canvas.height - 25, 120, 25);
-    ctx.fillStyle = document.body.classList.contains('dark-mode') ? "#e0e0e0" : "#424242";
-    ctx.font = "14px Roboto";
-    ctx.fillText(`(${x}, ${y})`, 5, canvas.height - 8);
+  // Canvas mouse move and touch
+  canvas.addEventListener("mousemove", updateCoordinates);
+  canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault(); // Prevent scrolling when touching the canvas
+    if (e.touches.length > 0) {
+      updateCoordinates(e.touches[0]);
+    }
   });
+  
+  // Canvas touch events for mobile devices
+  canvas.addEventListener("touchstart", (e) => {
+    e.preventDefault(); // Prevent default touch behavior
+    // Handle touch start if needed for future functionality
+  });
+
+  canvas.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    // Handle touch end if needed for future functionality
+  });
+}
+
+// Update coordinates display on canvas
+function updateCoordinates(e) {
+  const rect = canvas.getBoundingClientRect();
+  // Get canvas scaling factor
+  const scaleX = canvas.width / canvas.clientWidth;
+  const scaleY = canvas.height / canvas.clientHeight;
+  
+  // Calculate coordinates considering scaling
+  const x = Math.floor((e.clientX - rect.left) * scaleX);
+  const y = Math.floor((e.clientY - rect.top) * scaleY);
+  
+  // Clear a small area at the bottom to show coordinates
+  ctx.clearRect(0, canvas.height - 25, 120, 25);
+  ctx.fillStyle = document.body.classList.contains('dark-mode') ? "#e0e0e0" : "#424242";
+  ctx.font = "14px Roboto";
+  ctx.fillText(`(${x}, ${y})`, 5, canvas.height - 8);
 }
 
 // Show info modal with distribution-specific content
