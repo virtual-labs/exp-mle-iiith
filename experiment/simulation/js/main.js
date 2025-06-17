@@ -66,7 +66,7 @@ function resizeCanvas() {
   
   // Force a redraw to ensure the canvas looks crisp
   if (Object.keys(classData.class1).length > 0 || Object.keys(classData.class2).length > 0) {
-    drawCanvas();
+    drawData();
   }
 }
 
@@ -79,7 +79,7 @@ function setupEventListeners() {
     resizeCanvas();
     // Redraw canvas content after resize
     if (classData.class1.length > 0 || classData.class2.length > 0) {
-      drawCanvas();
+      drawData();
     }
   });
   
